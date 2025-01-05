@@ -38,6 +38,22 @@ app.post('/search', (req, res) => {
     });
 });
 
+// Add a new route to display the "Add Product" page
+app.get('/add-product', (req, res) => {
+    res.render('add-product');
+});
+
+// Add a POST route to handle form submission
+app.post('/add-product', (req, res) => {
+    const { name, description, price } = req.body;
+    const sql = `INSERT INTO products (name, description, price) VALUES (?, ?, ?)`;
+    db.query(sql, [name, description, price], (err, result) => {
+        if (err) throw err;
+        console.log('Product added:', result);
+        res.redirect('/');
+    });
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
