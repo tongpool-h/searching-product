@@ -1,6 +1,0 @@
-mkdir products
-cd products
-npm init -y 
-npm install express ejs mysql2 body-parser
-
-create database
