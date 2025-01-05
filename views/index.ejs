@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('header') %>
+
+    <div class="container">
+        <h1>Search for Products</h1>
+        <form action="/search" method="POST">
+            <input type="text" name="query" value="<%= query %>" placeholder="Search..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (products.length > 0) { %>
+            <h2>Results:</h2>
+            <ul>
+                <% products.forEach(product => { %>
+                    <li>
+                        <h3><%= product.name %> - $<%= product.price %></h3>
+                        <p><%= product.description %></p>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else if (query) { %>
+            <p>No products found for "<%= query %>"</p>
+        <% } %>
+    </div>
+</body>
+</html>
